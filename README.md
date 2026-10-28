@@ -23,6 +23,8 @@ Run `python run.py ... --check` for fixture/tool checks without starting CTS. Cr
 
 The default runner changes no power, frequency, RAM or BIOS settings. It pins one workload at a time, uses one OpenROAD thread and low scheduling priority, suppresses core dumps, stops at a sampled core/package temperature of 85 C, and bounds each workload to five minutes. Five-second sampling can miss peaks. Its local preload guard is built from `src/disable_core.c`. A completed marker and exit 0 establish a pass; explicit Signal 11 establishes a segmentation fault. Missing files/imports and permission errors are classified as setup errors and excluded. The control core must complete successfully for a useful comparison.
 
+An additional path-name control is available after a normal run/configuration: `python3 -B path_control.py --label path_control`. It alternates CPUs 6, 0, 6, 0 using the exact same child working path, archives each trial afterward, and verifies generated input hashes match. This separates affinity from per-core output-directory naming. It uses the same controller lock and must run after the matrix/sweep finishes.
+
 ## Performance versus Balanced and frequency limits
 
 To screen every online core sequentially, after configure.py:
@@ -43,7 +45,11 @@ If an all-core sweep is already running, add `--wait` to queue the matrix. It ca
 
 This optional helper is specific to the reported CPU layout and 3.7/5.7 GHz limits. It compares Performance → Balanced → Performance; checks the 3.7 GHz ceiling; if that passes, searches requested ceilings in 100 MHz steps and repeats the candidate on both CPUs. It records effective-frequency samples, not only requested ceilings. The search assumes approximate monotonicity and finite samples, so the result is a **tested passing candidate**, not a guaranteed safe frequency or exhaustive maximum. If the base check fails, it reports that no passing frequency was established.
 
+To generate compact Markdown/JSON tables from saved results, use `python3 -B summarize_cores.py <all-core-label>` or `python3 -B summarize_matrix.py <matrix-label>`. These reports distinguish pending trials, safety stops and setup failures from completed computation. Frequency tables separate requested ceilings from sampled clocks.
+
 Sudo is used for the live power-profiles-daemon profile and CPU 0/6 `scaling_max_freq` attributes. Workloads run as the invoking regular user, with that user's actual home directory restored after sudo. Original profile/limits are restored on completion or handled interruption/error. No BIOS, DRAM voltage, package or boot file is changed. Expect roughly 10–45 minutes depending on failures and candidate confirmation. Do not run another workload or frequency controller alongside it. Runtime data remain local and ignored by Git.
+
+If a matrix completed all three profile phases and restored settings before its frequency stage could start, `--resume-frequency <prior-label>` reuses that saved baseline on the same boot/firmware/kernel, requiring a passing CPU 6 control in each phase. It can be combined with `--wait`. The limit setter waits up to two seconds for two exact read-backs before computation, because Linux [queues frequency-policy updates asynchronously](https://github.com/torvalds/linux/blob/v7.0/drivers/cpufreq/cpufreq.c#L1142). A mismatch still aborts and restores settings; this does not relax the ceiling check.
 
 The earlier parent-folder sudo helper's normal baseline was invalid: it dropped UID while retaining HOME=/root, and both CPUs aborted on `/root/.openroad` permission errors before computation. No capped phase ran. That case is explicitly excluded; this repository corrects the environment and tests the regression.
 

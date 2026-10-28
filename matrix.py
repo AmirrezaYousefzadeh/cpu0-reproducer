@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import pwd
 import resource
+import re
 import signal
 import subprocess
 import sys
@@ -68,6 +69,29 @@ def validate_sweep(results_root, description):
         raise RuntimeError("CPU 6 failed the all-core screen; choose a passing control before the matrix")
 
 
+def frequency_resume(label, before):
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", label):
+        raise RuntimeError("Use a simple prior matrix label")
+    prior = json.loads((ROOT / "results" / label / "status.json").read_text())
+    phases = prior["phases"]
+    if not prior.get("finished") or not prior["restoration_verified"] or [p["name"] for p in phases] != [
+            "performance_before", "balanced", "performance_repeat"]:
+        raise RuntimeError("Resume requires a restored matrix with exactly the three completed profile phases")
+    for phase, expected_profile in zip(phases, ["performance", "balanced", "performance"]):
+        rows = phase.get("results", [])
+        if phase["profile"] != expected_profile or {(r["cpu"], r["trial"]) for r in rows} != {(0, 1), (6, 1)} or any(
+                r["stop_reason"] or r["classification"] == "setup_error" or
+                (r["cpu"] == 6 and r["classification"] != "pass") for r in rows):
+            raise RuntimeError("Prior profile comparison is incomplete or lacks a passing CPU 6 control")
+        meta = json.loads((ROOT / phase["result_directory"] / "metadata.json").read_text())
+        if any(meta[k] != before[k] for k in ["bios", "microcode"]) or meta["kernel"] != os.uname().release or meta[
+                "boot_id"] != Path("/proc/sys/kernel/random/boot_id").read_text().strip():
+            raise RuntimeError("Firmware, kernel or boot changed; run a fresh baseline instead of resuming")
+    if before["profile"] != "performance":
+        raise RuntimeError("Resume expects the restored Performance profile")
+    return tuple(all(r["classification"] == "pass" for r in phases[i]["results"] if r["cpu"] == 0) for i in [0, 2])
+
+
 def run_phase(name, cpus, trials, expected, cfg, out, status, owner):
     uid, gid, account = owner
     label = out.name + "_" + name
@@ -125,9 +149,13 @@ def main():
     p.add_argument("--config", type=Path, default=ROOT / ".local/host.json")
     p.add_argument("--check", action="store_true")
     p.add_argument("--wait", action="store_true", help="queue behind the current isolated comparison")
+    p.add_argument("--resume-frequency", metavar="PRIOR_LABEL", help="continue only the unexecuted frequency stage of a restored three-phase profile matrix")
     args = p.parse_args()
     before = inspect()
     cfg = json.loads(args.config.read_text())
+    if args.resume_frequency:
+        frequency_resume(args.resume_frequency, before)
+        before["plan"] = "Resume frequency stage only; retain the completed profile comparison from " + args.resume_frequency
     if args.check:
         print(json.dumps(before, indent=2)); return 0
     if os.geteuid() != 0 or not os.environ.get("SUDO_UID") or int(os.environ["SUDO_UID"]) == 0:
@@ -155,6 +183,9 @@ def main():
         # A queued test must capture the state at its actual start, not before
         # waiting. Keep the broad affinity until this second preflight finishes.
         before = inspect()
+        resumed = frequency_resume(args.resume_frequency, before) if args.resume_frequency else None
+        if resumed is not None:
+            before["plan"] = "Resume frequency stage only; profile baseline source: " + args.resume_frequency
         originals = {c: int(before["policies"][c]["scaling_max_freq"]) for c in CPUS}
         if any(v != 5700000 for v in originals.values()):
             raise RuntimeError("Original ceilings changed while waiting; no settings changed")
@@ -165,6 +196,8 @@ def main():
         out = ROOT / "results" / ("matrix_" + time.strftime("%Y%m%d_%H%M%S"))
         out.mkdir(parents=True, exist_ok=False); os.chown(out, uid, gid)
         status = {"started": now(), "before": before, "phases": [], "restoration_verified": False}
+        if args.resume_frequency:
+            status["profile_baseline_source"] = args.resume_frequency
         save_status(out, status, uid, gid)
         def interrupted(signum, frame):
             raise KeyboardInterrupt(f"signal {signum}")
@@ -173,11 +206,14 @@ def main():
         code = 0
         try:
             set_profile("performance")
-            normal_pass = run_phase("performance_before", CPUS, 1, originals, cfg, out, status, owner)
-            set_profile("balanced")
-            run_phase("balanced", CPUS, 1, originals, cfg, out, status, owner)
-            set_profile("performance")
-            normal_again = run_phase("performance_repeat", CPUS, 1, originals, cfg, out, status, owner)
+            if resumed is None:
+                normal_pass = run_phase("performance_before", CPUS, 1, originals, cfg, out, status, owner)
+                set_profile("balanced")
+                run_phase("balanced", CPUS, 1, originals, cfg, out, status, owner)
+                set_profile("performance")
+                normal_again = run_phase("performance_repeat", CPUS, 1, originals, cfg, out, status, owner)
+            else:
+                normal_pass, normal_again = resumed
             def capped(mhz, cpus, trials, name):
                 with temporary_limits(POLICIES, originals, mhz * 1000):
                     return run_phase(name, cpus, trials, {c: mhz * 1000 for c in CPUS}, cfg, out, status, owner)

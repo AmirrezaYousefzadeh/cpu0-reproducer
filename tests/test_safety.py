@@ -29,6 +29,18 @@ class SafetyTests(unittest.TestCase):
         self.assertEqual(env["HOME"], account.pw_dir)
         self.assertEqual(env["USER"], account.pw_name)
 
+    def test_delayed_kernel_limit_readback_waits_for_exact_value(self):
+        with patch.object(Path, "write_text") as write, patch.object(
+                Path, "read_text", side_effect=["5700000", "3700000", "3700000"]), patch.object(controls.time, "sleep"):
+            controls.write_limit(Path("fake-policy"), 3700000)
+        write.assert_called_once_with("3700000\n")
+
+    def test_limit_that_never_changes_aborts_with_requested_and_observed(self):
+        with patch.object(Path, "write_text"), patch.object(Path, "read_text", return_value="5700000"), patch.object(
+                controls.time, "monotonic", side_effect=[0, 3]):
+            with self.assertRaisesRegex(RuntimeError, "requested=3700000, observed=5700000"):
+                controls.write_limit(Path("fake-policy"), 3700000)
+
     def test_partial_cap_failure_restores_both_original_limits(self):
         with tempfile.TemporaryDirectory(dir=self.temporary_root) as d:
             paths = {c: Path(d) / str(c) for c in (0, 6)}
@@ -70,6 +82,35 @@ class SafetyTests(unittest.TestCase):
                 matrix.validate_sweep(root, description)
             b["classification"] = "pass"; p.write_text(json.dumps([a, b]))
             matrix.validate_sweep(root, description)
+
+    def test_frequency_resume_requires_restored_same_boot_passing_controls(self):
+        with tempfile.TemporaryDirectory(dir=self.temporary_root) as d:
+            root = Path(d); folder = root / "results/prior"; folder.mkdir(parents=True)
+            before = {"bios": "test-bios", "microcode": "test-code", "profile": "performance"}
+            meta = dict(before, kernel=os.uname().release,
+                        boot_id=Path("/proc/sys/kernel/random/boot_id").read_text().strip())
+            phases = []
+            for name, profile in [("performance_before", "performance"), ("balanced", "balanced"), ("performance_repeat", "performance")]:
+                (folder / name).mkdir()
+                (folder / name / "metadata.json").write_text(json.dumps(meta))
+                phases.append({"name": name, "profile": profile, "result_directory": f"results/prior/{name}",
+                               "results": [{"cpu": c, "trial": 1, "stop_reason": None,
+                                            "classification": "pass" if c == 6 else "SIGSEGV"} for c in [0, 6]]})
+            status = {"finished": "test-time", "restoration_verified": True, "phases": phases}
+            path = folder / "status.json"; path.write_text(json.dumps(status))
+            with patch.object(matrix, "ROOT", root):
+                self.assertEqual(matrix.frequency_resume("prior", before), (False, False))
+                status["restoration_verified"] = False; path.write_text(json.dumps(status))
+                with self.assertRaisesRegex(RuntimeError, "restored matrix"):
+                    matrix.frequency_resume("prior", before)
+                status["restoration_verified"] = True
+                status["phases"][2]["results"][1]["classification"] = "SIGSEGV"; path.write_text(json.dumps(status))
+                with self.assertRaisesRegex(RuntimeError, "passing CPU 6"):
+                    matrix.frequency_resume("prior", before)
+                status["phases"][2]["results"][1]["classification"] = "pass"; path.write_text(json.dumps(status))
+                (folder / "balanced/metadata.json").write_text(json.dumps(dict(meta, boot_id="different-boot")))
+                with self.assertRaisesRegex(RuntimeError, "boot changed"):
+                    matrix.frequency_resume("prior", before)
 
 
 if __name__ == "__main__":

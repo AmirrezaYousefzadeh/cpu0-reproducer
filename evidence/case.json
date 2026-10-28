@@ -30,7 +30,7 @@
       "stop_reason": null
     }
   ],
-  "frequency_or_balanced_result": "Not established yet; root matrix execution pending",
+  "frequency_or_balanced_result": "Profile comparison completed. Frequency stage did not start because the immediate policy readback mismatched; original settings restored. Delayed-readback fix tested; frequency-only resume awaits privileged execution.",
   "excluded_run": "Earlier sudo frequency helper aborted both CPUs on /root/.openroad permission errors before computation; no capped test ran; original limits restored.",
   "conclusion": "Reproducible CPU-affinity-dependent application instability; permanent silicon defect not established. Vendor component isolation remains useful.",
   "prime95_short_screen": [
@@ -58,5 +58,297 @@
       "median_sampled_frequency_mhz": 5429.4,
       "all_sampled_thread_affinities_correct": true
     }
-  ]
+  ],
+  "all_core_screen": {
+    "completed_trials": 24,
+    "trials_per_core": 1,
+    "failed_cpus": [
+      0
+    ],
+    "passed_cpus": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "maximum_sampled_temperature_c": 78.0,
+    "safety_or_setup_stops": 0,
+    "table": "all_cores.json"
+  },
+  "profile_comparison": {
+    "sequence": [
+      "performance",
+      "balanced",
+      "performance"
+    ],
+    "rows": [
+      {
+        "phase": "performance_before",
+        "profile": "performance",
+        "cpu": 0,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "unexpected_failure",
+        "stop_reason": null,
+        "elapsed_seconds": 115.208,
+        "application_signals_in_log": [
+          "SIGILL"
+        ],
+        "maximum_sampled_temperature_c": 78.0,
+        "sampled_frequency_mhz": {
+          "count": 22,
+          "minimum": 5471.6,
+          "median": 5597.7,
+          "maximum": 5665.4
+        },
+        "sampled_epp_values": [
+          "performance"
+        ],
+        "all_sampled_ceilings_match": true
+      },
+      {
+        "phase": "performance_before",
+        "profile": "performance",
+        "cpu": 6,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "pass",
+        "stop_reason": null,
+        "elapsed_seconds": 125.21,
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 78.0,
+        "sampled_frequency_mhz": {
+          "count": 24,
+          "minimum": 5384.2,
+          "median": 5526.8,
+          "maximum": 5642.6
+        },
+        "sampled_epp_values": [
+          "performance"
+        ],
+        "all_sampled_ceilings_match": true
+      },
+      {
+        "phase": "balanced",
+        "profile": "balanced",
+        "cpu": 0,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "pass",
+        "stop_reason": null,
+        "elapsed_seconds": 125.223,
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 76.0,
+        "sampled_frequency_mhz": {
+          "count": 24,
+          "minimum": 5519.0,
+          "median": 5599.5,
+          "maximum": 5655.8
+        },
+        "sampled_epp_values": [
+          "balance_performance"
+        ],
+        "all_sampled_ceilings_match": true
+      },
+      {
+        "phase": "balanced",
+        "profile": "balanced",
+        "cpu": 6,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "pass",
+        "stop_reason": null,
+        "elapsed_seconds": 125.225,
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 80.0,
+        "sampled_frequency_mhz": {
+          "count": 24,
+          "minimum": 5480.9,
+          "median": 5539.8,
+          "maximum": 5609.0
+        },
+        "sampled_epp_values": [
+          "balance_performance"
+        ],
+        "all_sampled_ceilings_match": true
+      },
+      {
+        "phase": "performance_repeat",
+        "profile": "performance",
+        "cpu": 0,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "SIGSEGV",
+        "stop_reason": null,
+        "elapsed_seconds": 10.017,
+        "application_signals_in_log": [
+          "SIGSEGV"
+        ],
+        "maximum_sampled_temperature_c": 63.0,
+        "sampled_frequency_mhz": {
+          "count": 1,
+          "minimum": 5585.4,
+          "median": 5585.4,
+          "maximum": 5585.4
+        },
+        "sampled_epp_values": [
+          "performance"
+        ],
+        "all_sampled_ceilings_match": true
+      },
+      {
+        "phase": "performance_repeat",
+        "profile": "performance",
+        "cpu": 6,
+        "trial": 1,
+        "requested_ceiling_mhz": 5700.0,
+        "result": "pass",
+        "stop_reason": null,
+        "elapsed_seconds": 125.213,
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 78.0,
+        "sampled_frequency_mhz": {
+          "count": 24,
+          "minimum": 5440.9,
+          "median": 5541.0,
+          "maximum": 5616.7
+        },
+        "sampled_epp_values": [
+          "performance"
+        ],
+        "all_sampled_ceilings_match": true
+      }
+    ],
+    "restoration_verified": true,
+    "source": "profile_matrix.json",
+    "interpretation": "CPU 0 failed/passed/failed; CPU 6 passed all three. One Balanced pass is not a stability guarantee or component attribution."
+  },
+  "newer_matching_microcode": {
+    "revision": "0x122",
+    "active_revision": "0x121",
+    "installed": false,
+    "tested": false
+  },
+  "same_path_control": {
+    "profile": "performance",
+    "complete": true,
+    "same_child_working_directory": true,
+    "generated_input_hashes_identical": true,
+    "cpu_sequence": [
+      6,
+      0,
+      6,
+      0
+    ],
+    "rows": [
+      {
+        "sequence": 1,
+        "cpu": 6,
+        "classification": "pass",
+        "elapsed_seconds": 125.115,
+        "stop_reason": null,
+        "generated_input_hashes": {
+          "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+          "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+        },
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 78.0,
+        "median_sampled_mhz": 5522.6,
+        "epp_values": [
+          "performance"
+        ],
+        "ceiling_khz_values": [
+          "5700000"
+        ],
+        "workload_log_sha256": "fba23ca228f1f2d17416032fc87ece2f1dc43c6c675ef5d7d738b257c87e76bc"
+      },
+      {
+        "sequence": 2,
+        "cpu": 0,
+        "classification": "unexpected_failure",
+        "elapsed_seconds": 110.104,
+        "stop_reason": null,
+        "generated_input_hashes": {
+          "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+          "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+        },
+        "application_signals_in_log": [
+          "SIGILL"
+        ],
+        "maximum_sampled_temperature_c": 76.0,
+        "median_sampled_mhz": 5587.4,
+        "epp_values": [
+          "performance"
+        ],
+        "ceiling_khz_values": [
+          "5700000"
+        ],
+        "workload_log_sha256": "d3859aa407053d31a629316f7a0cd1daee3f31b8aca3a57711c781f00ec9797e"
+      },
+      {
+        "sequence": 3,
+        "cpu": 6,
+        "classification": "pass",
+        "elapsed_seconds": 125.105,
+        "stop_reason": null,
+        "generated_input_hashes": {
+          "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+          "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+        },
+        "application_signals_in_log": [],
+        "maximum_sampled_temperature_c": 78.0,
+        "median_sampled_mhz": 5518.5,
+        "epp_values": [
+          "performance"
+        ],
+        "ceiling_khz_values": [
+          "5700000"
+        ],
+        "workload_log_sha256": "dd1b43743ab7c5179956838f614863f6b8d230829d9717565ada07b733cbd294"
+      },
+      {
+        "sequence": 4,
+        "cpu": 0,
+        "classification": "SIGSEGV",
+        "elapsed_seconds": 5.005,
+        "stop_reason": null,
+        "generated_input_hashes": {
+          "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+          "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+        },
+        "application_signals_in_log": [
+          "SIGSEGV"
+        ],
+        "maximum_sampled_temperature_c": 48.0,
+        "median_sampled_mhz": null,
+        "epp_values": [
+          "performance"
+        ],
+        "ceiling_khz_values": [
+          "5700000"
+        ],
+        "workload_log_sha256": "22da75ae7f89042487c6f5075f3377838cfcee86e3f178e1a506d3b870413d25"
+      }
+    ],
+    "interpretation": "CPU 6 passed twice and CPU 0 failed twice using the same paths and matching generated inputs. This reduces the directory-name confound; it does not prove a particular physical component is faulty."
+  }
 }

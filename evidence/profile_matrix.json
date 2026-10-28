@@ -1,0 +1,150 @@
+{
+  "label": "matrix_20261028_204723",
+  "started": "2026-10-28T20:47:23.577651+01:00",
+  "finished": "2026-10-28T20:57:52.502103+01:00",
+  "error": "RuntimeError: Frequency limit read-back failed: /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq",
+  "restoration_verified": true,
+  "restoration_errors": [],
+  "candidate_limit_mhz": null,
+  "confirmed_passing_candidate_limit_mhz": null,
+  "interpretation": null,
+  "rows": [
+    {
+      "phase": "performance_before",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "unexpected_failure",
+      "stop_reason": null,
+      "elapsed_seconds": 115.208,
+      "application_signals_in_log": [
+        "SIGILL"
+      ],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 22,
+        "minimum": 5471.6,
+        "median": 5597.7,
+        "maximum": 5665.4
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "performance_before",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.21,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5384.2,
+        "median": 5526.8,
+        "maximum": 5642.6
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "balanced",
+      "profile": "balanced",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.223,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 76.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5519.0,
+        "median": 5599.5,
+        "maximum": 5655.8
+      },
+      "sampled_epp_values": [
+        "balance_performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "balanced",
+      "profile": "balanced",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.225,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 80.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5480.9,
+        "median": 5539.8,
+        "maximum": 5609.0
+      },
+      "sampled_epp_values": [
+        "balance_performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "performance_repeat",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "SIGSEGV",
+      "stop_reason": null,
+      "elapsed_seconds": 10.017,
+      "application_signals_in_log": [
+        "SIGSEGV"
+      ],
+      "maximum_sampled_temperature_c": 63.0,
+      "sampled_frequency_mhz": {
+        "count": 1,
+        "minimum": 5585.4,
+        "median": 5585.4,
+        "maximum": 5585.4
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "performance_repeat",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.213,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5440.9,
+        "median": 5541.0,
+        "maximum": 5616.7
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    }
+  ],
+  "measurement_limit": "scaling_cur_freq sampled every five seconds; startup/idle samples and missed transients are possible. Requested ceiling and sampled frequency are distinct. Finite passes do not establish long-term stability or a global highest passing frequency."
+}

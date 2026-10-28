@@ -1,7 +1,7 @@
 """Frequency restoration and process-cleanup primitives (MIT)."""
 from contextlib import contextmanager
 import datetime as dt
-import json, os, signal, subprocess
+import json, os, signal, subprocess, time
 from pathlib import Path
 
 def now():
@@ -10,8 +10,19 @@ def now():
 def write_limit(directory, value):
     path = directory / "scaling_max_freq"
     path.write_text(str(value) + "\n")
-    if int(path.read_text()) != value:
-        raise RuntimeError(f"Frequency limit read-back failed: {path}")
+    # CPUFreq's QoS notifier schedules policy updates asynchronously. An
+    # immediate read can still show the old limit. Require two exact readings;
+    # do not start a workload while the new limit remains unconfirmed.
+    deadline = time.monotonic() + 2
+    matched = 0
+    while True:
+        actual = int(path.read_text())
+        matched = matched + 1 if actual == value else 0
+        if matched >= 2:
+            return
+        if time.monotonic() >= deadline:
+            raise RuntimeError(f"Frequency limit read-back failed: {path}; requested={value}, observed={actual} kHz after 2 s")
+        time.sleep(0.02)
 
 def restore_limits(policies, originals):
     errors = []

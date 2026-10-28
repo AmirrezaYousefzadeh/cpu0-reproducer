@@ -1,0 +1,103 @@
+{
+  "profile": "performance",
+  "complete": true,
+  "same_child_working_directory": true,
+  "generated_input_hashes_identical": true,
+  "cpu_sequence": [
+    6,
+    0,
+    6,
+    0
+  ],
+  "rows": [
+    {
+      "sequence": 1,
+      "cpu": 6,
+      "classification": "pass",
+      "elapsed_seconds": 125.115,
+      "stop_reason": null,
+      "generated_input_hashes": {
+        "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+        "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+      },
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "median_sampled_mhz": 5522.6,
+      "epp_values": [
+        "performance"
+      ],
+      "ceiling_khz_values": [
+        "5700000"
+      ],
+      "workload_log_sha256": "fba23ca228f1f2d17416032fc87ece2f1dc43c6c675ef5d7d738b257c87e76bc"
+    },
+    {
+      "sequence": 2,
+      "cpu": 0,
+      "classification": "unexpected_failure",
+      "elapsed_seconds": 110.104,
+      "stop_reason": null,
+      "generated_input_hashes": {
+        "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+        "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+      },
+      "application_signals_in_log": [
+        "SIGILL"
+      ],
+      "maximum_sampled_temperature_c": 76.0,
+      "median_sampled_mhz": 5587.4,
+      "epp_values": [
+        "performance"
+      ],
+      "ceiling_khz_values": [
+        "5700000"
+      ],
+      "workload_log_sha256": "d3859aa407053d31a629316f7a0cd1daee3f31b8aca3a57711c781f00ec9797e"
+    },
+    {
+      "sequence": 3,
+      "cpu": 6,
+      "classification": "pass",
+      "elapsed_seconds": 125.105,
+      "stop_reason": null,
+      "generated_input_hashes": {
+        "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+        "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+      },
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "median_sampled_mhz": 5518.5,
+      "epp_values": [
+        "performance"
+      ],
+      "ceiling_khz_values": [
+        "5700000"
+      ],
+      "workload_log_sha256": "dd1b43743ab7c5179956838f614863f6b8d230829d9717565ada07b733cbd294"
+    },
+    {
+      "sequence": 4,
+      "cpu": 0,
+      "classification": "SIGSEGV",
+      "elapsed_seconds": 5.005,
+      "stop_reason": null,
+      "generated_input_hashes": {
+        "config.json": "1edb321e324628293d4c5f48e25b43fb73380a907d64663907c15df1ba30ad5f",
+        "state.json": "20ddf2c0f8c8e3ecd70483e5d56f49efcfd1b1c45bea188f1deee259e5090b4b"
+      },
+      "application_signals_in_log": [
+        "SIGSEGV"
+      ],
+      "maximum_sampled_temperature_c": 48.0,
+      "median_sampled_mhz": null,
+      "epp_values": [
+        "performance"
+      ],
+      "ceiling_khz_values": [
+        "5700000"
+      ],
+      "workload_log_sha256": "22da75ae7f89042487c6f5075f3377838cfcee86e3f178e1a506d3b870413d25"
+    }
+  ],
+  "interpretation": "CPU 6 passed twice and CPU 0 failed twice using the same paths and matching generated inputs. This reduces the directory-name confound; it does not prove a particular physical component is faulty."
+}
