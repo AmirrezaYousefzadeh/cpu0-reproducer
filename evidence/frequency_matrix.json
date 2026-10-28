@@ -1,0 +1,346 @@
+{
+  "label": "matrix_20261028_221935",
+  "started": "2026-10-28T22:19:35.813495+01:00",
+  "finished": "2026-10-28T22:51:33.115251+01:00",
+  "error": null,
+  "restoration_verified": true,
+  "restoration_errors": [],
+  "candidate_limit_mhz": 5600,
+  "confirmed_passing_candidate_limit_mhz": 5600,
+  "interpretation": "Finite trials and requested ceilings; not a guarantee of stability. Inspect measured frequencies; frequency-response may be non-monotonic.",
+  "rows": [
+    {
+      "phase": "base_3700",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 3700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 180.329,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 47.0,
+      "sampled_frequency_mhz": {
+        "count": 35,
+        "minimum": 3652.1,
+        "median": 3700.0,
+        "maximum": 3700.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "base_3700",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 3700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 180.311,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 48.0,
+      "sampled_frequency_mhz": {
+        "count": 35,
+        "minimum": 3683.3,
+        "median": 3700.0,
+        "maximum": 3700.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "probe_4700",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 4700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 150.268,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 52.0,
+      "sampled_frequency_mhz": {
+        "count": 29,
+        "minimum": 4565.6,
+        "median": 4600.0,
+        "maximum": 4600.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "probe_5200",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5200.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 135.24,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 60.0,
+      "sampled_frequency_mhz": {
+        "count": 26,
+        "minimum": 5056.5,
+        "median": 5100.0,
+        "maximum": 5100.1
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "probe_5400",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5400.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 130.233,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 64.0,
+      "sampled_frequency_mhz": {
+        "count": 25,
+        "minimum": 5378.8,
+        "median": 5395.9,
+        "maximum": 5400.1
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "probe_5500",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5500.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.219,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 67.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5431.3,
+        "median": 5481.3,
+        "maximum": 5497.6
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "probe_5600",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.211,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 75.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5509.1,
+        "median": 5544.3,
+        "maximum": 5587.5
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.234,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 75.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5512.1,
+        "median": 5570.8,
+        "maximum": 5600.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.233,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5436.4,
+        "median": 5537.5,
+        "maximum": 5598.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 2,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.241,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 75.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5529.2,
+        "median": 5566.5,
+        "maximum": 5600.1
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 2,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.226,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 77.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5398.9,
+        "median": 5533.3,
+        "maximum": 5600.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 3,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.238,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 75.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5533.9,
+        "median": 5578.0,
+        "maximum": 5600.0
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "confirm_candidate",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 3,
+      "requested_ceiling_mhz": 5600.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.227,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5444.6,
+        "median": 5531.5,
+        "maximum": 5592.5
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "restored_final",
+      "profile": "performance",
+      "cpu": 0,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "SIGSEGV",
+      "stop_reason": null,
+      "elapsed_seconds": 5.009,
+      "application_signals_in_log": [
+        "SIGSEGV"
+      ],
+      "maximum_sampled_temperature_c": 52.0,
+      "sampled_frequency_mhz": {
+        "count": 0,
+        "minimum": null,
+        "median": null,
+        "maximum": null
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    },
+    {
+      "phase": "restored_final",
+      "profile": "performance",
+      "cpu": 6,
+      "trial": 1,
+      "requested_ceiling_mhz": 5700.0,
+      "result": "pass",
+      "stop_reason": null,
+      "elapsed_seconds": 125.228,
+      "application_signals_in_log": [],
+      "maximum_sampled_temperature_c": 78.0,
+      "sampled_frequency_mhz": {
+        "count": 24,
+        "minimum": 5495.5,
+        "median": 5562.2,
+        "maximum": 5645.6
+      },
+      "sampled_epp_values": [
+        "performance"
+      ],
+      "all_sampled_ceilings_match": true
+    }
+  ],
+  "measurement_limit": "scaling_cur_freq sampled every five seconds; startup/idle samples and missed transients are possible. Requested ceiling and sampled frequency are distinct. Finite passes do not establish long-term stability or a global highest passing frequency."
+}

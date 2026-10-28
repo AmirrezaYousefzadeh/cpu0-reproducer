@@ -6,6 +6,8 @@ The placed design database and constraints are included. The original research c
 
 ## Reproduce
 
+If you received the shareable bundle, first run `git clone /path/to/cpu0-reproducer.bundle cpu0-reproducer` and `cd cpu0-reproducer`. The bundle contains the complete Git history and does not require access to the original machine or research checkout.
+
 Linux, at least 16 GiB available RAM, GCC, util-linux/taskset, readable coretemp sensors, and the pinned tools below are required. Choose a suspected CPU and a comparable control core; numbering and P/E-core layouts vary between machines. These examples use 0 and 6. A separate coordinator core is preferred.
 
 Install [Nix](https://nixos.org/download/) and enter the exact LibreLane environment:
@@ -70,6 +72,10 @@ See [Intel errata and the cross-machine protocol](INTEL_ERRATA_AND_CROSS_MACHINE
 ## Case and warranty evidence
 
 `evidence/case.json`, the redacted Memtest report and per-core portable logs record the observations. `WARRANTY_REPORT.md` is a factual attachment suitable for a seller/manufacturer case. The current evidence supports CPU-affinity-dependent instability; a component swap or independent vendor diagnosis would strengthen attribution to the processor itself. A lower-frequency workaround does not establish that the machine is healthy at default settings.
+
+The completed case screened all 24 cores: CPU 0 failed and CPUs 1–23 passed once. An identical-path 6/0/6/0 control gave two CPU 6 passes and two CPU 0 failures. The Ubuntu profile sequence was Performance fail → Balanced pass → Performance fail on CPU 0, while CPU 6 passed each phase. A subsequent Performance-mode frequency search found a 5.6 GHz requested ceiling that passed three confirmation trials on each CPU (plus the earlier CPU 0 probe); restoring the original 5.7 GHz ceiling immediately reproduced CPU 0's SIGSEGV. CPU 0's confirmation medians were approximately 5.57 GHz. This is a finite tested candidate, not a stability guarantee. All original profile/limits were restored. See `evidence/frequency_matrix.md` for every probe, and `WARRANTY_REPORT.md` for the full record.
+
+All 44 reviewed passing outputs had the same 134 saved metrics and byte-identical OpenDB output as the passing CPU 6 reference. `evidence/output_consistency.json` records the comparisons; it is a consistency check against a control, not an independent correctness oracle. The matching newer Intel microcode 0x122 remains untested; active firmware is 0x121. No specific Intel erratum or physical component has been established as the cause.
 
 The memory is deliberately at JEDEC DDR5-4800 with XMP disabled to reduce variables. Kingston's matching 32 GB CL40 module family specifies 4800 CL40-39-39 at 1.1 V by default and XMP Profile 1 at 6000 CL40-40-40, 1.35 V ([datasheet](https://www.kingston.com/datasheets/KF560C40BB-32.pdf)). Firmware reports the shortened part number KF560C40-32; the datasheet is for KF560C40BB-32. DDR5-6000 means 6000 MT/s, approximately 3000 MHz DRAM clock. A separate XMP-6000 run must repeat memory and application checks; the 4800 pass does not validate 6000 operation.
 

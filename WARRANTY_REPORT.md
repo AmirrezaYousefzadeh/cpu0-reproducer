@@ -44,9 +44,28 @@ CPU 0's median sampled clock was approximately 5.60 GHz in both the first Perfor
 
 An additional Performance-profile control alternated CPUs 6, 0, 6, 0 using the exact same child working path. CPU 6 passed both trials (125.115 s and 125.105 s); CPU 0 failed both (Signal 4 after 110.104 s, Signal 11 after 5.005 s). All generated config/state hashes matched. This reduces output-directory naming as an explanation for the affinity dependence. See `evidence/path_control.json` and `evidence/path_control.md`.
 
-The matrix then stopped before its capped workload because an immediate limit read-back mismatched the request. All original limits and the Performance profile were restored and independently checked. Linux applies CPUFreq policy updates through queued work; the helper now waits for two exact read-backs with a two-second deadline, with delayed-readback and failure regression checks. The frequency-only resume has not yet produced a result, so no passing frequency threshold is claimed.
+The first profile matrix stopped before its capped workload because an immediate limit read-back mismatched the request. All original limits and the Performance profile were restored. Linux applies CPUFreq policy updates through queued work; the helper was corrected to wait for two exact read-backs with a two-second deadline. Delayed-readback, refusal, restoration and resume safety checks passed.
 
-The owner reports selecting Performance mode in September. The comparison above tests Ubuntu's Power Mode setting. That historical timing alone does not establish causation or exclude other changes.
+The user then ran the frequency-only continuation on the same boot and firmware, from 22:19:35 to 22:51:33 Europe/Amsterdam on 2026-10-28. Both CPUs 0 and 6 were temporarily capped; other core limits were unchanged. Every phase used Performance:
+
+| Requested ceiling | CPU 0 | CPU 6 | CPU 0 median sampled clock |
+|---|---|---|---|
+| 3.7 GHz | Passed, 180.329 s | Passed, 180.311 s | 3.700 GHz |
+| 4.7 GHz | Passed, 150.268 s | Not tested at this probe | 4.600 GHz |
+| 5.2 GHz | Passed, 135.240 s | Not tested at this probe | 5.100 GHz |
+| 5.4 GHz | Passed, 130.233 s | Not tested at this probe | 5.396 GHz |
+| 5.5 GHz | Passed, 125.219 s | Not tested at this probe | 5.481 GHz |
+| 5.6 GHz probe | Passed, 125.211 s | Not tested at this probe | 5.544 GHz |
+| 5.6 GHz confirmation | Passed 3/3, 125.234–125.241 s | Passed 3/3, 125.226–125.233 s | 5.567–5.578 GHz |
+| Original 5.7 GHz ceiling restored | Signal 11 after 5.009 s | Passed, 125.228 s | No post-startup sample before the crash |
+
+CPU 0 passed all nine capped trials, including four at the 5.6 GHz requested ceiling, then failed immediately when the original ceiling was restored. CPU 6 passed all its trials. The highest sampled temperatures during repeated 5.6 GHz confirmation were 75 C on CPU 0 and 78 C on CPU 6; the short restored-ceiling CPU 0 failure had a maximum sampled value of 52 C. There was no safety/setup stop and no matching new kernel machine-check/OOM event in the reviewed window. The helper verified restoration, and independent read-only checks confirmed Performance and the original 5,700,000 kHz limits on both CPUs.
+
+All 44 passing application trials reviewed across the core screen, profile comparison, path control and frequency experiments matched the passing CPU 6 reference on 134 saved metrics and produced byte-identical output OpenDB files. This is output consistency against a control, not an independent proof of computational correctness. See `evidence/frequency_matrix.json`, `evidence/output_consistency.json`, and the included capped-success/restored-failure excerpts.
+
+The 5.6 GHz ceiling is a **tested passing candidate for this bounded workload**, not a certified safe frequency or exhaustive highest stable limit. The 100 MHz search assumes approximate monotonicity. Five-second samples cannot resolve every clock/voltage transition. The results support sensitivity to the operating limit on logical CPU 0 and justify vendor investigation; they do not isolate permanent silicon damage from firmware, board/power delivery or software. Original settings remain restored; no persistent workaround was installed.
+
+The owner reports selecting Performance mode in September through a ChatGPT-provided sudo terminal command offering power saving, balanced and performance modes. That description is consistent with Ubuntu's power profiles; the original command is unavailable. The comparison above explicitly tests `powerprofilesctl`. The historical timing alone does not establish causation or exclude other changes.
 
 Requested investigation: reproduce the included fixed workload on CPU 0 and a comparable control at stock CPU and JEDEC RAM settings; validate with vendor diagnostics; if possible, repeat with a known-good processor/board to identify the failing component. A software/toolchain defect and board/power-path contribution have not been fully excluded. No replacement eligibility determination is made here.
 
