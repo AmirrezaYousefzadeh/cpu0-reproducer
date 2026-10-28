@@ -58,6 +58,16 @@ def inspect():
             "writes": ["power-profiles-daemon active profile", *[str(p / "scaling_max_freq") for p in POLICIES.values()]]}
 
 
+def validate_sweep(results_root, description):
+    rows = json.loads((results_root / description["label"] / "results.json").read_text())
+    expected = {(c, t) for c in description["cpus"] for t in range(1, description["trials"] + 1)}
+    if {(r["cpu"], r["trial"]) for r in rows} != expected or any(
+            r["stop_reason"] or r["classification"] == "setup_error" for r in rows):
+        raise RuntimeError("The preceding all-core sweep is incomplete or invalid; review it before changing settings")
+    if any(r["cpu"] == 6 and r["classification"] != "pass" for r in rows):
+        raise RuntimeError("CPU 6 failed the all-core screen; choose a passing control before the matrix")
+
+
 def run_phase(name, cpus, trials, expected, cfg, out, status, owner):
     uid, gid, account = owner
     label = out.name + "_" + name
@@ -114,6 +124,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--config", type=Path, default=ROOT / ".local/host.json")
     p.add_argument("--check", action="store_true")
+    p.add_argument("--wait", action="store_true", help="queue behind the current isolated comparison")
     args = p.parse_args()
     before = inspect()
     cfg = json.loads(args.config.read_text())
@@ -127,12 +138,30 @@ def main():
     originals = {c: int(before["policies"][c]["scaling_max_freq"]) for c in CPUS}
     if any(v != 5700000 for v in originals.values()):
         raise RuntimeError("This matrix expects the original 5.7 GHz ceilings")
-    os.sched_setaffinity(0, {7}); os.nice(10)
+    os.nice(10)
     resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
     if ctypes.CDLL(None, use_errno=True).prctl(4, 0, 0, 0, 0):
         raise OSError(ctypes.get_errno(), "Core-dump suppression failed")
     with (ROOT / ".local/controller.lock").open("a") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        try:
+            if args.wait:
+                print("Waiting for the current isolated comparison to finish; settings are unchanged.", flush=True)
+            fcntl.flock(lock, fcntl.LOCK_EX | (0 if args.wait else fcntl.LOCK_NB))
+        except BlockingIOError:
+            p.error("Another hardware comparison is running. Use --wait to queue; no settings were changed.")
+        except KeyboardInterrupt:
+            print("Queue cancelled before changing settings.", flush=True)
+            return 130
+        # A queued test must capture the state at its actual start, not before
+        # waiting. Keep the broad affinity until this second preflight finishes.
+        before = inspect()
+        originals = {c: int(before["policies"][c]["scaling_max_freq"]) for c in CPUS}
+        if any(v != 5700000 for v in originals.values()):
+            raise RuntimeError("Original ceilings changed while waiting; no settings changed")
+        pending_sweep = ROOT / ".local/latest_sweep.json"
+        if args.wait and pending_sweep.exists():
+            validate_sweep(ROOT / "results", json.loads(pending_sweep.read_text()))
+        os.sched_setaffinity(0, {7})
         out = ROOT / "results" / ("matrix_" + time.strftime("%Y%m%d_%H%M%S"))
         out.mkdir(parents=True, exist_ok=False); os.chown(out, uid, gid)
         status = {"started": now(), "before": before, "phases": [], "restoration_verified": False}

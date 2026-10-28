@@ -25,17 +25,29 @@ The default runner changes no power, frequency, RAM or BIOS settings. It pins on
 
 ## Performance versus Balanced and frequency limits
 
+To screen every online core sequentially, after configure.py:
+
+```bash
+python3 -B all_cores.py --trials 1
+```
+
+This keeps settings fixed and uses a separate supervisor core, including while CPU 7 is tested. It shares a controller lock with matrix.py, so setting changes cannot overlap the all-core sweep. On a 24-core machine it may take about an hour. Repeat failures and controls; one pass does not certify a core as healthy.
+
 After configure.py, `python matrix.py --check` prints the read-only plan. On the reported machine, run:
 
 ```bash
 sudo python3 -B matrix.py
 ```
 
+If an all-core sweep is already running, add `--wait` to queue the matrix. It captures the original settings after acquiring the lock and checks that the preceding sweep completed and CPU 6 passed before making any setting changes. Keep the terminal open while queued/running.
+
 This optional helper is specific to the reported CPU layout and 3.7/5.7 GHz limits. It compares Performance → Balanced → Performance; checks the 3.7 GHz ceiling; if that passes, searches requested ceilings in 100 MHz steps and repeats the candidate on both CPUs. It records effective-frequency samples, not only requested ceilings. The search assumes approximate monotonicity and finite samples, so the result is a **tested passing candidate**, not a guaranteed safe frequency or exhaustive maximum. If the base check fails, it reports that no passing frequency was established.
 
 Sudo is used for the live power-profiles-daemon profile and CPU 0/6 `scaling_max_freq` attributes. Workloads run as the invoking regular user, with that user's actual home directory restored after sudo. Original profile/limits are restored on completion or handled interruption/error. No BIOS, DRAM voltage, package or boot file is changed. Expect roughly 10–45 minutes depending on failures and candidate confirmation. Do not run another workload or frequency controller alongside it. Runtime data remain local and ignored by Git.
 
 The earlier parent-folder sudo helper's normal baseline was invalid: it dropped UID while retaining HOME=/root, and both CPUs aborted on `/root/.openroad` permission errors before computation. No capped phase ran. That case is explicitly excluded; this repository corrects the environment and tests the regression.
+
+See [Intel errata and the cross-machine protocol](INTEL_ERRATA_AND_CROSS_MACHINE.md) for how to distinguish an individual sample/platform from a model-wide design or microcode issue. No specific Intel erratum has been matched to this crash.
 
 ## Published diagnostics
 

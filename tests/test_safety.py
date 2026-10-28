@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import pwd
 import tempfile
+import json
 import unittest
 from unittest.mock import patch
 import controls
@@ -53,6 +54,22 @@ class SafetyTests(unittest.TestCase):
                 with controls.temporary_limits(paths, {0: 5700000, 6: 5700000}, 3700000):
                     raise KeyboardInterrupt()
             self.assertTrue(all(int((p / "scaling_max_freq").read_text()) == 5700000 for p in paths.values()))
+
+    def test_queued_matrix_rejects_incomplete_or_failed_control_sweep(self):
+        with tempfile.TemporaryDirectory(dir=self.temporary_root) as d:
+            root = Path(d); (root / "sweep").mkdir()
+            description = {"label": "sweep", "cpus": [0, 6], "trials": 1}
+            a = {"cpu": 0, "trial": 1, "classification": "SIGSEGV", "stop_reason": None}
+            b = {"cpu": 6, "trial": 1, "classification": "pass", "stop_reason": None}
+            p = root / "sweep/results.json"
+            p.write_text(json.dumps([a]))
+            with self.assertRaisesRegex(RuntimeError, "incomplete"):
+                matrix.validate_sweep(root, description)
+            b["classification"] = "SIGSEGV"; p.write_text(json.dumps([a, b]))
+            with self.assertRaisesRegex(RuntimeError, "CPU 6 failed"):
+                matrix.validate_sweep(root, description)
+            b["classification"] = "pass"; p.write_text(json.dumps([a, b]))
+            matrix.validate_sweep(root, description)
 
 
 if __name__ == "__main__":

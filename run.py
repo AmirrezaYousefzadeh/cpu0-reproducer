@@ -136,6 +136,11 @@ def main():
     records = []
     for trial in range(1, args.trials + 1):
         for cpu in args.cpus:
+            # Keep the supervisor on a different core even when the requested
+            # sweep includes every CPU. Preserve the original allowed mask.
+            others = allowed - {cpu}
+            coordinator = 7 if 7 in others else (6 if 6 in others else min(others or allowed))
+            os.sched_setaffinity(0, {coordinator})
             available = int(next(s.split()[1] for s in Path("/proc/meminfo").read_text().splitlines() if s.startswith("MemAvailable:")))
             if available < 16 * 1024**2:
                 raise RuntimeError("At least 16 GiB available memory is required")
@@ -146,7 +151,8 @@ def main():
             env["PATH"] = str(Path(args.openroad).parent) + os.pathsep + env["PATH"]
             command = ["taskset", "-c", str(cpu), str(args.python), "-B", str(ROOT / "replay.py"),
                        "--trial", str(directory), "--pdk-root", str(args.pdk_root.resolve())]
-            record = {"cpu": cpu, "trial": trial, "started": now(), "command": command}
+            record = {"cpu": cpu, "trial": trial, "started": now(), "command": command,
+                      "coordinator_cpu": coordinator}
             process = None
             reason = None
             maximum = 0
