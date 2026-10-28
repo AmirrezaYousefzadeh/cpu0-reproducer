@@ -1,0 +1,26 @@
+[
+  {
+    "cpu": 0,
+    "requested_seconds": 180,
+    "elapsed_seconds": 180.532,
+    "stop_reason": null,
+    "completed_self_tests_reported": 5,
+    "maximum_sampled_temperature_c": 80.0,
+    "classification": "short_screen_no_errors",
+    "binary_sha256": "cfb8cc794ecbf338bb4512d4c2de0b0afb95a1940fc49cfbeff02a033777ad8e",
+    "median_sampled_frequency_mhz": 5539.9,
+    "all_sampled_thread_affinities_correct": true
+  },
+  {
+    "cpu": 6,
+    "requested_seconds": 180,
+    "elapsed_seconds": 180.539,
+    "stop_reason": null,
+    "completed_self_tests_reported": 5,
+    "maximum_sampled_temperature_c": 82.0,
+    "classification": "short_screen_no_errors",
+    "binary_sha256": "cfb8cc794ecbf338bb4512d4c2de0b0afb95a1940fc49cfbeff02a033777ad8e",
+    "median_sampled_frequency_mhz": 5429.4,
+    "all_sampled_thread_affinities_correct": true
+  }
+]

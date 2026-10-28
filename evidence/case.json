@@ -1,0 +1,62 @@
+{
+  "cpu": "Intel Core Ultra 9 285K",
+  "motherboard": "MSI PRO Z890-S WIFI (MS-7E54)",
+  "bios": "1.AE0",
+  "microcode": "0x121",
+  "kernel": "7.0.0-38-generic",
+  "cpu_settings_source": "User confirmed Intel Default Settings and XMP disabled",
+  "active_memory": "DDR5-4800, CAS 40-39-39-77; two 32 GB Kingston KF560C40-32 DIMMs",
+  "desktop_power_profile": "performance",
+  "memtest": {
+    "passes": 1,
+    "errors": 0,
+    "elapsed": "00:25:20"
+  },
+  "portable_validation": [
+    {
+      "cpu": 0,
+      "trial": 1,
+      "classification": "SIGSEGV",
+      "elapsed_seconds": 10.015,
+      "max_sampled_temperature_c": 75.0,
+      "stop_reason": null
+    },
+    {
+      "cpu": 6,
+      "trial": 1,
+      "classification": "pass",
+      "elapsed_seconds": 125.225,
+      "max_sampled_temperature_c": 78.0,
+      "stop_reason": null
+    }
+  ],
+  "frequency_or_balanced_result": "Not established yet; root matrix execution pending",
+  "excluded_run": "Earlier sudo frequency helper aborted both CPUs on /root/.openroad permission errors before computation; no capped test ran; original limits restored.",
+  "conclusion": "Reproducible CPU-affinity-dependent application instability; permanent silicon defect not established. Vendor component isolation remains useful.",
+  "prime95_short_screen": [
+    {
+      "cpu": 0,
+      "requested_seconds": 180,
+      "elapsed_seconds": 180.532,
+      "stop_reason": null,
+      "completed_self_tests_reported": 5,
+      "maximum_sampled_temperature_c": 80.0,
+      "classification": "short_screen_no_errors",
+      "binary_sha256": "cfb8cc794ecbf338bb4512d4c2de0b0afb95a1940fc49cfbeff02a033777ad8e",
+      "median_sampled_frequency_mhz": 5539.9,
+      "all_sampled_thread_affinities_correct": true
+    },
+    {
+      "cpu": 6,
+      "requested_seconds": 180,
+      "elapsed_seconds": 180.539,
+      "stop_reason": null,
+      "completed_self_tests_reported": 5,
+      "maximum_sampled_temperature_c": 82.0,
+      "classification": "short_screen_no_errors",
+      "binary_sha256": "cfb8cc794ecbf338bb4512d4c2de0b0afb95a1940fc49cfbeff02a033777ad8e",
+      "median_sampled_frequency_mhz": 5429.4,
+      "all_sampled_thread_affinities_correct": true
+    }
+  ]
+}

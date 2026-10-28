@@ -1,0 +1,32 @@
+Memtest86+ v9.00 Report
+=======================
+
+Date: 2026-10-28 16:54:17
+
+CPU: Intel(R) Core(TM) Ultra 9 285K
+Motherboard: Micro-Star International Co., Ltd. PRO Z890-S WIFI (MS-7E54)
+Baseboard Serial: [redacted for sharing]
+Memory: 64900 MB
+IMC: DDR5-4800 / CAS 40-39-39-77
+
+Memory SPD Information:
+  Slot 1: 32768 MB DDR5-6000 - Kingston KF560C40-32
+  Slot 3: 32768 MB DDR5-6000 - Kingston KF560C40-32
+
+Per-Test Results:
+  Test 00: [Address test, walking ones, no cache  ]  Errors: 0
+  Test 02: [Address test, own address + window    ]  Errors: 0
+  Test 03: [Bus stress, R/W turnaround, random    ]  Errors: 0
+  Test 04: [Moving inversions, 1s & 0s            ]  Errors: 0
+  Test 05: [Moving inversions, random (AVX2)      ]  Errors: 0
+  Test 06: [Moving inversions, 8 bit pattern      ]  Errors: 0
+  Test 07: [Modulo 20, random pattern             ]  Errors: 0
+  Test 08: [Block move                            ]  Errors: 0
+  Test 09: [Moving inversions, 64 bit pattern     ]  Errors: 0
+  Test 10: [Bit fade test, 0s, 1s, random         ]  Errors: 0
+
+Passes completed: 1
+Errors: 0
+ECC Errors: 0
+
+Final Result: PASS (running for 00:25:20)

@@ -1,0 +1,9 @@
+{
+  "librelane_version": "3.0.16",
+  "librelane_commit": "01ddb25e4424f6f5aaf6b951b14a2b6fdcf737c0",
+  "openroad_commit": "dcf36133a369abc8f3c5e5738cd4d82e4903c0e0",
+  "pdk": "sky130",
+  "pdk_open_pdks_commit": "8afc8346a57fe1ab7934ba5a6056ea8b43078e71",
+  "fixture_original_odb_sha256": "324faefe260e344598110bfb34eee88c47cf56a878d65deeba3d7e4b45e1ea04",
+  "notes": "PDK and tools are external dependencies; fixtures are standalone copies. Parent diagnostic scripts and research tree are not runtime dependencies."
+}
