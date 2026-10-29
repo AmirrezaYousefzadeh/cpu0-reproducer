@@ -2,7 +2,7 @@
   "reference": "results/matrix_20261028_204723_performance_before/trial1_cpu6/step/state_out.json",
   "reference_metric_count": 134,
   "reference_output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
-  "completed_passes_compared": 44,
+  "completed_passes_compared": 50,
   "all_saved_metrics_match": true,
   "all_output_databases_match": true,
   "rows": [
@@ -397,6 +397,60 @@
       "label": "path_control_20261028",
       "cpu": 6,
       "sequence": 3,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 6,
+      "sequence": 1,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 0,
+      "sequence": 2,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 6,
+      "sequence": 3,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 0,
+      "sequence": 4,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 6,
+      "sequence": 5,
+      "metric_count": 134,
+      "different_metric_keys": [],
+      "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
+      "output_odb_matches_reference": true
+    },
+    {
+      "label": "persistent_5500_20261029",
+      "cpu": 0,
+      "sequence": 6,
       "metric_count": 134,
       "different_metric_keys": [],
       "output_odb_sha256": "3b15a48370b9f8d8535bb8f96c1193ef4c04ba2e1e59ee29057516ad61a56f76",
