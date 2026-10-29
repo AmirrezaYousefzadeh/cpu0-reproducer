@@ -1,0 +1,8 @@
+# Machine-check and boot error (BERT) lines in the kernel log, all boots, unedited.
+2026-10-13T02:20:46+02:00 cognimachina kernel: mce: [Hardware Error]: Machine check events logged
+2026-10-15T13:58:19+02:00 cognimachina kernel: BERT: [Hardware Error]: Skipped 1 error records
+2026-10-15T13:58:19+02:00 cognimachina kernel: BERT: Total records found: 1
+2026-10-15T16:06:42+02:00 cognimachina kernel: BERT: [Hardware Error]: Skipped 1 error records
+2026-10-15T16:06:42+02:00 cognimachina kernel: BERT: Total records found: 1
+2026-10-28T14:50:01+01:00 cognimachina kernel: BERT: [Hardware Error]: Skipped 1 error records
+2026-10-28T14:50:01+01:00 cognimachina kernel: BERT: Total records found: 1

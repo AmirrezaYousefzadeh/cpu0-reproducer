@@ -1,0 +1,9 @@
+Crash records attributed to a CPU: 30
+  CPU 0: 25
+  CPU 21: 1
+  CPU 10: 1
+  CPU 8: 1
+  CPU 16: 1
+  CPU 19: 1
+Records without CPU attribution (mostly 'invalid opcode' traps): 10
+CPU 6 has the same scheduler priority (ITMT highest_perf 92) as CPU 0; see 01_system/system_info.txt.

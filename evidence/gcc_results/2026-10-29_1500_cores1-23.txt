@@ -1,0 +1,79 @@
+CPU: Intel(R) Core(TM) Ultra 9 285K, microcode 0x121, kernel 7.0.0-38-generic
+Compiler: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+core 1: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 2: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 3: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 4: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 5: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 6: maximum clock 5700 MHz (hardware maximum 5700 MHz)
+core 7: maximum clock 5500 MHz (hardware maximum 5500 MHz)
+core 8: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 9: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 10: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 11: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 12: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 13: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 14: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 15: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 16: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 17: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 18: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 19: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 20: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 21: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 22: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+core 23: maximum clock 4700 MHz (hardware maximum 4700 MHz)
+Each line: one 60-second block of repeated compiles pinned to one core.
+
+core  6:   6 compiles,   0 failed  
+core  6:   6 compiles,   0 failed  
+core  6:   6 compiles,   0 failed  
+core  6:   6 compiles,   0 failed  
+core  6:   6 compiles,   0 failed  
+core  1:   6 compiles,   0 failed  
+core  2:   6 compiles,   0 failed  
+core  3:   6 compiles,   0 failed  
+core  4:   6 compiles,   0 failed  
+core  5:   6 compiles,   0 failed  
+core  7:   6 compiles,   0 failed  
+core  8:   5 compiles,   0 failed  
+core  9:   5 compiles,   0 failed  
+core 10:   5 compiles,   0 failed  
+core 11:   5 compiles,   0 failed  
+core 12:   5 compiles,   0 failed  
+core 13:   5 compiles,   0 failed  
+core 14:   5 compiles,   0 failed  
+core 15:   5 compiles,   0 failed  
+core 16:   5 compiles,   0 failed  
+core 17:   5 compiles,   0 failed  
+core 18:   4 compiles,   0 failed  
+core 19:   5 compiles,   0 failed  
+core 20:   5 compiles,   0 failed  
+core 21:   5 compiles,   0 failed  
+core 22:   5 compiles,   0 failed  
+core 23:   5 compiles,   0 failed  
+
+core  compiles  crashed  wrong output
+   1         6        0             0
+   2         6        0             0
+   3         6        0             0
+   4         6        0             0
+   5         6        0             0
+   6        30        0             0
+   7         6        0             0
+   8         5        0             0
+   9         5        0             0
+  10         5        0             0
+  11         5        0             0
+  12         5        0             0
+  13         5        0             0
+  14         5        0             0
+  15         5        0             0
+  16         5        0             0
+  17         5        0             0
+  18         4        0             0
+  19         5        0             0
+  20         5        0             0
+  21         5        0             0
+  22         5        0             0
+  23         5        0             0

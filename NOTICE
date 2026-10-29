@@ -1,12 +1,9 @@
-The diagnostic harness was prepared for this hardware investigation in 2026.
+This repository documents a processor fault on one PC and contains scripts to reproduce it (MIT licence, see LICENSE).
 
-The included placed OpenDB fixture is owner-supplied diagnostic design material.
-It incorporates SKY130 technology/library information. Upstream sources and
-licensing information: https://github.com/google/skywater-pdk and
-https://github.com/RTimothyEdwards/open_pdks . Apache License 2.0 text is included
-in toolchain/APACHE-2.0.txt. No affiliation or endorsement is asserted.
-
-LibreLane and OpenROAD are external runtime dependencies, pinned to the versions
-in toolchain/versions.json. The copied upstream Nix recipe/lock metadata retain
-their upstream license and copyright notices.
-
+Third-party material:
+- sqlite-amalgamation-3500400.zip: SQLite 3.50.4 source, public domain (https://www.sqlite.org/copyright.html).
+- openroad_test/cts_bundle.tar.xz: SKY130 standard-cell library files (Apache-2.0, https://github.com/google/skywater-pdk,
+  https://github.com/RTimothyEdwards/open_pdks) and LibreLane step scripts (Apache-2.0, https://github.com/librelane/librelane).
+  The Apache License 2.0 text is in openroad_test/LICENSE-APACHE-2.0.txt.
+- The placed design database in openroad_test/ is the owner's own design.
+OpenROAD, LibreLane, gcc and Prime95 are external programs and are not redistributed here.

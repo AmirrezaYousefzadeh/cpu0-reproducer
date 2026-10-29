@@ -1,0 +1,34 @@
+gcc -O2 -c sqlite3.c (SQLite 3.50.4), pinned to CPU 0, stock 5.7 GHz limit, 2026-10-29 14:55-14:59
+
+time      core  result                    gcc message
+14:55:33     0  gcc rc=1                    sqlite3.c:110732:20: internal compiler error: Aborted
+14:55:46     0  ok                          
+14:55:48     0  gcc rc=1                    sqlite3.c:262897:1: internal compiler error: Illegal instruction
+14:56:01     0  ok                          
+14:56:13     0  ok                          
+14:56:25     0  ok                          
+14:56:29     0  gcc rc=1                    sqlite3.c:210546:12: internal compiler error: Segmentation fault
+14:56:39     0  gcc rc=4                    sqlite3.c:31828:17: internal compiler error: Segmentation fault
+14:56:48     0  gcc rc=1                    sqlite3.c:171130:27: internal compiler error: Illegal instruction
+14:56:54     0  gcc rc=1                    sqlite3.c:94128:22: internal compiler error: Segmentation fault
+14:57:06     0  ok                          
+14:57:10     0  gcc rc=4                    sqlite3.c:262897:1: internal compiler error: Segmentation fault
+14:57:13     0  gcc rc=1                    sqlite3.c:55854:1: internal compiler error: Segmentation fault
+14:57:16     0  gcc rc=1                    sqlite3.c:262897:1: internal compiler error: Segmentation fault
+14:57:24     0  gcc rc=1                    sqlite3.c:60545:1: internal compiler error: Segmentation fault
+14:57:30     0  gcc rc=1                    sqlite3.c:117172:12: internal compiler error: Segmentation fault
+14:57:32     0  gcc rc=1                    sqlite3.c:167614:3: internal compiler error: Segmentation fault
+14:57:41     0  gcc rc=1                    sqlite3.c:113485:20: internal compiler error: Segmentation fault
+14:57:48     0  gcc rc=1                    sqlite3.c:61198:1: internal compiler error: Segmentation fault
+14:57:56     0  gcc rc=1                    sqlite3.c:79731:12: internal compiler error: Segmentation fault
+14:58:08     0  ok                          
+14:58:13     0  gcc rc=1                    sqlite3.c:118795:1: internal compiler error: Illegal instruction
+14:58:21     0  gcc rc=1                    sqlite3.c:83727:29: internal compiler error: Segmentation fault
+14:58:33     0  ok                          
+14:58:40     0  gcc rc=1                    sqlite3.c:169485:11: internal compiler error: Segmentation fault
+14:58:53     0  ok                          
+14:59:04     0  gcc rc=1                    sqlite3.c:155720:21: internal compiler error: Segmentation fault
+14:59:08     0  gcc rc=1                    sqlite3.c:131107:12: internal compiler error: Segmentation fault
+14:59:31     0  ok                          
+
+29 compile+xz iterations, 20 failed

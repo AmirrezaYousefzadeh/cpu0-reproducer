@@ -1,0 +1,42 @@
+# All user-space crash records in the kernel log (all boots kept by the journal), unedited.
+# 'likely on CPU N' is the kernel's attribution of the CPU that took the fault.
+2026-09-22T12:21:39+02:00 cognimachina kernel: python[3008344]: segfault at 1404f40 ip 0000000001404f40 sp 00007ffce5ff52d8 error 14 likely on CPU 0 (core 0, socket 0)
+2026-09-23T21:05:17+02:00 cognimachina kernel: python[3845589]: segfault at 1 ip 00000000005d7af0 sp 00007ffe16608838 error 6 in python3.10[1d7af0,41f000+1ff000] likely on CPU 0 (core 0, socket 0)
+2026-09-25T14:02:48+02:00 cognimachina kernel: traps: python[4126494] trap invalid opcode ip:4ee1c8 sp:7ffdb5ba5a00 error:0 in python3.10[ee1c8,41f000+1ff000]
+2026-09-25T23:56:59+02:00 cognimachina kernel: python[4189561]: segfault at 1 ip 00007a899ca268b4 sp 00007ffe6951ef48 error 6 in libcufile.so.0[2268b4,7a899c831000+1f9000] likely on CPU 0 (core 0, socket 0)
+2026-09-30T11:21:17+02:00 cognimachina kernel: traps: python[594078] trap invalid opcode ip:582abf sp:7ffed21ac750 error:0 in python3.10[182abf,41f000+1ff000]
+2026-09-30T20:13:40+02:00 cognimachina kernel: python[668246]: segfault at 75dfc0 ip 00000000004f5288 sp 00007ffd6499bb80 error 4 in python3.10[f5288,41f000+1ff000] likely on CPU 0 (core 0, socket 0)
+2026-10-02T00:44:26+02:00 cognimachina kernel: python[840865]: segfault at 69 ip 00000000004d7750 sp 00007fff3c6f0e60 error 6 in python3.10[d7750,41f000+1ff000] likely on CPU 0 (core 0, socket 0)
+2026-10-03T00:31:25+02:00 cognimachina kernel: python[1505581]: segfault at ffffffff81721938 ip 00000000004da63b sp 00007fffe95f3400 error 5 in python3.10[da63b,41f000+1ff000] likely on CPU 0 (core 0, socket 0)
+2026-10-03T10:53:51+02:00 cognimachina kernel: traps: python[1526333] general protection fault ip:4f6687 sp:7fffc0542870 error:0 in python3.10[f6687,41f000+1ff000]
+2026-10-09T00:27:20+02:00 cognimachina kernel: sta[1722971]: segfault at 7fff00000000 ip 00007ffff797222b sp 00007fffffffc1e8 error 4 in libc.so.6[15f22b,7ffff783b000+15c000] likely on CPU 21 (core 37, socket 0)
+2026-10-09T00:38:25+02:00 cognimachina kernel: sta[1730517]: segfault at 18 ip 0000555555774024 sp 00007fffffffc380 error 4 in sta[220024,55555558d000+2ff000] likely on CPU 10 (core 10, socket 0)
+2026-10-09T00:43:04+02:00 cognimachina kernel: sta[1734523]: segfault at 3436325f57 ip 00005555557d9832 sp 00007fffffffb970 error 4 in sta[285832,55555558d000+2ff000] likely on CPU 8 (core 8, socket 0)
+2026-10-09T01:25:59+02:00 cognimachina kernel: ld-linux-x86-64[1744203]: segfault at 71518555ec10 ip 000072f2786f0e06 sp 00007ffffce8bf80 error 4 in vvp[f0e06,72f27866d000+96000] likely on CPU 16 (core 32, socket 0)
+2026-10-10T17:52:16+02:00 cognimachina kernel: traps: python[2391008] trap invalid opcode ip:5dd617 sp:7ffe4b58af70 error:0 in python3.12[1dd617,420000+2e3000]
+2026-10-10T17:55:15+02:00 cognimachina kernel: traps: python[2391573] general protection fault ip:552d00 sp:7ffdf05337b8 error:0 in python3.12[152d00,420000+2e3000]
+2026-10-10T17:55:59+02:00 cognimachina kernel: python[2391824]: segfault at 7ffe4b5c2e70 ip 00000000005f7785 sp 00007ffe025c2e68 error 4 in python3.12[1f7785,420000+2e3000] likely on CPU 0 (core 0, socket 0)
+2026-10-13T02:14:09+02:00 cognimachina kernel: ld-linux-x86-64[2716429]: segfault at c0 ip 000073509ea75078 sp 00007ffd9c793b00 error 4 in libc.so.6[75078,73509ea28000+195000] likely on CPU 19 (core 35, socket 0)
+2026-10-13T02:17:47+02:00 cognimachina kernel: traps: python[2718717] trap invalid opcode ip:74c1bd0a86bc sp:7ffc9cf48a30 error:0 in libtorch_python.so[8a86bc,74c1bca11000+b0d000]
+2026-10-13T14:21:59+02:00 cognimachina kernel: python[3160611]: segfault at a3ff00 ip 0000000000a3ff00 sp 00007ffc121b0130 error 15 in python3.12[63ef00,a29000+17e000] likely on CPU 0 (core 0, socket 0)
+2026-10-14T05:04:21+02:00 cognimachina kernel: sta[3441757]: segfault at 40001 ip 00007ffff7ef8e8a sp 00007fffffffcb00 error 6 in libtcl8.6.so[109e8a,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-15T02:30:57+02:00 cognimachina kernel: traps: sta[3550399] general protection fault ip:7ffff7ec0165 sp:7fffffffcea0 error:0 in libtcl8.6.so[d1165,7ffff7e1b000+148000]
+2026-10-15T08:21:09+02:00 cognimachina kernel: sta[3676612]: segfault at eff188a7 ip 00007ffff7efce14 sp 00007fffffffcfc8 error 6 in libtcl8.6.so[10de14,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-15T08:21:15+02:00 cognimachina kernel: sta[3676721]: segfault at 5555f5abafc8 ip 00007ffff7ebd7fd sp 00007fffffffcff0 error 4 in libtcl8.6.so[ce7fd,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-15T08:36:40+02:00 cognimachina kernel: sta[3682143]: segfault at 40032 ip 00007ffff7ef8e7e sp 00007fffffffcba0 error 6 in libtcl8.6.so[109e7e,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-16T03:51:54+02:00 cognimachina kernel: sta[210140]: segfault at 7ffff7e14180 ip 00007ffff7e14180 sp 00007fffffffcc58 error 15 in libtcl8.6.so[25180,7ffff7def000+2c000] likely on CPU 0 (core 0, socket 0)
+2026-10-16T03:52:57+02:00 cognimachina kernel: sta[210890]: segfault at 7fffffffcc90 ip 00007fffffffcc90 sp 00007fffffffcab0 error 15 likely on CPU 0 (core 0, socket 0)
+2026-10-17T01:17:08+02:00 cognimachina kernel: python[395915]: segfault at 7ffbc7a7de43 ip 00000000005db87d sp 00007ffc3e5b0770 error 4 in python3.12[1db87d,420000+2e3000] likely on CPU 0 (core 0, socket 0)
+2026-10-17T01:42:13+02:00 cognimachina kernel: traps: python[413684] general protection fault ip:741283a486ae sp:7fff5bfe8b58 error:0 in libtorch_cpu.so[18486ae,7412831fb000+12599000]
+2026-10-17T03:14:18+02:00 cognimachina kernel: sta[495425]: segfault at 1 ip 00007ffff7ec0e03 sp 00007fffffffcf20 error 4 in libtcl8.6.so[d1e03,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-19T20:25:20+02:00 cognimachina kernel: python[1422465]: segfault at 72b6d7f33ed8 ip 000072b6d7f33ed8 sp 00007ffef23d3198 error 15 likely on CPU 0 (core 0, socket 0)
+2026-10-22T21:46:59+02:00 cognimachina kernel: python[2126051]: segfault at ffffffff87172030 ip 000073183d17f020 sp 00007317876edb58 error 7 in libcuda.so.580.178.04[17f020,73183d166000+f84000] likely on CPU 0 (core 0, socket 0)
+2026-10-23T18:33:11+02:00 cognimachina kernel: python[1789048]: segfault at fc1c5af0 ip 000074bce41b9c09 sp 00000000fc1c5af0 error 4 in libc10_cuda.so[21c09,74bce41a8000+42000] likely on CPU 0 (core 0, socket 0)
+2026-10-24T21:20:19+02:00 cognimachina kernel: sta[3134354]: segfault at 0 ip 00007ffff7f0ce13 sp 00007fffffffce80 error 6 in libtcl8.6.so[11de13,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-24T21:22:35+02:00 cognimachina kernel: sta[3135868]: segfault at fffffda2 ip 00007ffff7eb7894 sp 00007fffffffcd88 error 6 in libtcl8.6.so[c8894,7ffff7e1b000+148000] likely on CPU 0 (core 0, socket 0)
+2026-10-27T20:10:58+01:00 cognimachina kernel: python[1239431]: segfault at 0 ip 0000000000000000 sp 0000743ce290a318 error 14 likely on CPU 0 (core 0, socket 0)
+2026-10-27T20:14:32+01:00 cognimachina kernel: traps: python[1270761] trap invalid opcode ip:5d5ae1 sp:7ffd34092c10 error:0 in python[1d5ae1,420000+2e3000]
+2026-10-27T20:15:59+01:00 cognimachina kernel: traps: python[1272581] trap invalid opcode ip:7fd965b911b8 sp:7fffe20a5060 error:0 in libc10_cuda.so[1e1b8,7fd965b84000+54000]
+2026-10-28T06:06:40+01:00 cognimachina kernel: python3.13[1582868]: segfault at 0 ip 0000155554f2af04 sp 00007fffffffabd8 error 4 in libpython3.13.so.1.0[12af04,155554e84000+37f000] likely on CPU 0 (core 0, socket 0)
+2026-10-28T06:17:04+01:00 cognimachina kernel: python3.13[1589078]: segfault at 7e74b703 ip 00001555551c6af3 sp 00007fffffffaf80 error 6 in libpython3.13.so.1.0[3c6af3,155554e84000+37f000] likely on CPU 0 (core 0, socket 0)
+2026-10-28T19:22:32+01:00 cognimachina kernel: python3.13[31016]: segfault at 49000347 ip 00007cf9956d6bfa sp 00007ffe960f0a30 error 4 in libpython3.13.so.1.0[d6bfa,7cf995684000+37f000] likely on CPU 0 (core 0, socket 0)

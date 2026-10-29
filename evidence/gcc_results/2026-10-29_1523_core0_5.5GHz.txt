@@ -1,0 +1,9 @@
+CPU: Intel(R) Core(TM) Ultra 9 285K, microcode 0x121, kernel 7.0.0-38-generic
+Compiler: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+core 0: maximum clock 5500 MHz (hardware maximum 5700 MHz)
+Each line: one 600-second block of repeated compiles pinned to one core.
+
+core  0:  53 compiles,   0 failed  
+
+core  compiles  crashed  wrong output
+   0        53        0             0

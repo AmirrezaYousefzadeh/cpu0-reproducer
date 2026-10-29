@@ -1,0 +1,36 @@
+CPU: Intel(R) Core(TM) Ultra 9 285K, microcode 0x121, kernel 7.0.0-38-generic
+Compiler: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+core 0: maximum clock 5700 MHz (hardware maximum 5700 MHz)
+core 6: maximum clock 5700 MHz (hardware maximum 5700 MHz)
+Each line: one 120-second block of repeated compiles pinned to one core.
+
+  core 0 compile 1: internal compiler error: Segmentation fault
+  core 0 compile 5: internal compiler error: Segmentation fault
+  core 0 compile 6: internal compiler error: Segmentation fault
+  core 0 compile 7: internal compiler error: Segmentation fault
+  core 0 compile 11: internal compiler error: Segmentation fault
+  core 0 compile 14: internal compiler error: Segmentation fault
+  core 0 compile 15: internal compiler error: Segmentation fault
+  core 0 compile 16: internal compiler error: Segmentation fault
+  core 0 compile 17: internal compiler error: Segmentation fault
+core  0:  18 compiles,   9 failed  (e.g. internal compiler error: Segmentation fault)
+core  6:  11 compiles,   0 failed  
+  core 0 compile 1: internal compiler error: Illegal instruction
+  core 0 compile 7: internal compiler error: Segmentation fault
+  core 0 compile 8: internal compiler error: Segmentation fault
+  core 0 compile 9: internal compiler error: Segmentation fault
+  core 0 compile 11: internal compiler error: Segmentation fault
+  core 0 compile 12: internal compiler error: Segmentation fault
+  core 0 compile 13: internal compiler error: Segmentation fault
+  core 0 compile 14: internal compiler error: Segmentation fault
+  core 0 compile 15: internal compiler error: Segmentation fault
+  core 0 compile 17: internal compiler error: Segmentation fault
+  core 0 compile 18: internal compiler error: Segmentation fault
+  core 0 compile 20: internal compiler error: Segmentation fault
+  core 0 compile 21: internal compiler error: Segmentation fault
+core  0:  21 compiles,  13 failed  (e.g. internal compiler error: Illegal instruction)
+core  6:  11 compiles,   0 failed  
+
+core  compiles  crashed  wrong output
+   0        39       22             0
+   6        22        0             0
